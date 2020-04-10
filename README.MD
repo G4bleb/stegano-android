@@ -1,4 +1,4 @@
-# 8INF865 Plateforrmes mobiles
+# 8INF865 Plateformes mobiles
 Il est demandé de concevoir et d’implémenter une galerie de photos qui permet de cacher du texte dans une image.
 Pour cela, vous devez
 1. Afficher toutes les photos de l’appareil dans une sorte de galerie d’images.
