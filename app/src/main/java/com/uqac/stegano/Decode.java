@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.ayush.imagesteganographylibrary.Text.AsyncTaskCallback.TextDecodingCallback;
-import com.ayush.imagesteganographylibrary.Text.ImageSteganography;
-import com.ayush.imagesteganographylibrary.Text.TextDecoding;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class Decode extends Stegano implements TextDecodingCallback {
+public class Decode extends AppCompatActivity {
     private TextView logTextView;
     private TextView decodedTextView;
     private Bitmap encodedBitmap;
@@ -23,28 +21,8 @@ public class Decode extends Stegano implements TextDecodingCallback {
 
         String imagePath = getIntent().getStringExtra("EncodedImagePath"); //get image path from post activity
         Log.d("DECODE", "Loading "+imagePath);
-        encodedBitmap = loadImage(imagePath);
-        decodeImage(encodedBitmap);
-
-    }
-
-    public void decodeImage(Bitmap image){
-        ImageSteganography imageSteganography = new ImageSteganography(
-                "",
-                image);
-        TextDecoding textDecoding = new TextDecoding(Decode.this,
-                Decode.this);
-        textDecoding.execute(imageSteganography);
-
-    }
-
-    @Override
-    public void onStartTextEncoding() {
-        //Whatever you want to do at the start of text encoding
-    }
-
-    @Override
-    public void onCompleteTextEncoding(ImageSteganography result) {
+        encodedBitmap = Utilities.loadImage(imagePath);
+        String result = EncodeDecode.decodeMessage(encodedBitmap);
 
         //After the completion of text encoding.
 
@@ -52,19 +30,14 @@ public class Decode extends Stegano implements TextDecodingCallback {
         if (result != null){
 
             /* If result.isDecoded() is false, it means no Message was found in the image. */
-            if (!result.isDecoded())
+            if (result.equals(""))
                 logTextView.setText("No message found");
 
             else{
-                /* If result.isSecretKeyWrong() is true, it means that secret key provided is wrong. */
-                if (!result.isSecretKeyWrong()){
                     //set the message to the UI component.
                     logTextView.setText("Decoded");
-                    decodedTextView.setText("" + result.getMessage());
-                }
-                else {
-                    logTextView.setText("Wrong secret key");
-                }
+                    decodedTextView.setText(result);
+
             }
         }
         else {

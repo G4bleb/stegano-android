@@ -13,9 +13,6 @@ class EncodeDecode {
     private static final String TAG = EncodeDecode.class.getName();
 
     //start and end message constants
-//    private static final String END_MESSAGE_CONSTANT = "#!@";
-//    private static final String START_MESSAGE_CONSTANT = "@!#";
-    //start and end message constants
     private static final String END_MESSAGE_CONSTANT = Character.toString((char)28);
     private static final String START_MESSAGE_CONSTANT = Character.toString((char)31);
 

@@ -1,8 +1,66 @@
 package com.uqac.stegano;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.util.Log;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class Utilities {
+    /**
+     * Loads a Bitmap from the given path
+     * @param path
+     * @return the Bitmap if succeeded, null otherwise
+     */
+    public static Bitmap loadImage(String path){
+        if (path != null && !path.isEmpty()) {
+            File imgFile = new File(path);
+            if (imgFile.exists()) {
+                return BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Saves a Bitmap as a PNG to pictures folder
+     * @param bitmapImage
+     * @param filename
+     * @return the path to the image
+     */
+    public static String saveToInternalStorage(Bitmap bitmapImage, String filename){
+        File directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+
+        directory = new File(directory, "Stegano");
+        if(!directory.exists()) {
+            directory.mkdir();
+        }
+        // Create imageDir
+        File mypath=new File(directory,filename);
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return mypath.getAbsolutePath();
+    }
+
+
+
+
     /**
      * This method converts the byte array to an integer array.
      *
