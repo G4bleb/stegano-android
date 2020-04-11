@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.uqac.stegano", appContext.getPackageName());
+        assertEquals("com.uqac.encode", appContext.getPackageName());
     }
 }

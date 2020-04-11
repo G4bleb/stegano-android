@@ -5,7 +5,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.uqac.stegano"
+        applicationId "com.uqac.encode"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
@@ -35,4 +35,6 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    implementation 'com.github.aagarwal1012:Image-Steganography-Library-Android:v1.1'
 }

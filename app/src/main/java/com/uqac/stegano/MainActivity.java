@@ -6,24 +6,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             int count = cursor.getCount();
 
             //Create an array to store path to all the images
-            String[] arrPath = new String[count];
+            final String[] arrPath = new String[count];
 
             for (int i = 0; i < count; i++) {
                 cursor.moveToPosition(i);
@@ -107,6 +106,18 @@ public class MainActivity extends AppCompatActivity {
 
             galleryAdapter.setData(filesList);
             gridView.setAdapter(galleryAdapter);
+
+            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> parent, View v, int position,
+                                        long id) {
+                    String imgPath = filesList.get(position);
+                    Intent i = new Intent(getApplicationContext(), Encode.class); //start new Intent to another Activity.
+                    i.putExtra("ClickedImagePath", imgPath ); //put image link in intent.
+                    startActivity(i);
+
+                }
+            });
+
             isGalleryInitialized = true;
         }
     }
