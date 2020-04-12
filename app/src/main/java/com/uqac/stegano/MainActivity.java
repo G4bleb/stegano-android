@@ -119,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, DisplayActivity.class);
                     intent.putExtra("path", stringVal);
                     startActivity(intent);
-                    finish();
                 }
             });
         }

@@ -49,20 +49,9 @@ public class DisplayActivity extends Activity {
         });
     }
 
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        // return button used to go back to main
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
 }
 
-// NOTE to start activity on click of image
+// NOTE to start activity on click image
 // String stringVal = <information de la photo>
 // Intent i = new Intent(this, DisplayActivity.class);
 // i.putString("path", stringVal);
