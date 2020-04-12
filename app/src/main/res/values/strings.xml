@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Stegano</string>
+    <string name="image_text">No hidden message</string>
+    <string name="save_button">Save</string>
 </resources>
