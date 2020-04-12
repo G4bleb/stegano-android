@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             // The cursor should be freed up after use with close()
             cursor.close();
 
-            for(int i=0 ; i < count ; i++) {
+            for(int i=count-1 ; i >= 0 ; i--) { // reverse for latest image on top
                 if(arrPath[i].endsWith(".jpg") || arrPath[i].endsWith(".png") || arrPath[i].endsWith(".jpeg")) {
                     filesList.add(arrPath[i]);
                 }
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
             galleryAdapter.setData(filesList);
             gridView.setAdapter(galleryAdapter);
-            isGalleryInitialized = true;
+            // isGalleryInitialized = true;
 
             // Make grid clickable
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -170,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        isGalleryInitialized = false;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
