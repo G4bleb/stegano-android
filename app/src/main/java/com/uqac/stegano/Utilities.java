@@ -1,7 +1,10 @@
 package com.uqac.stegano;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
@@ -91,6 +94,23 @@ public class Utilities {
             }
         }
         return mypath.getAbsolutePath();
+    }
+
+    public static void refreshGallery(Context context, String path){
+        MediaScannerConnection
+                .scanFile(
+                        context,
+                        new String[]{path},
+                        null,
+                        new MediaScannerConnection.OnScanCompletedListener() {
+                            public void onScanCompleted(
+                                    String path, Uri uri) {
+                                Log.i("ExternalStorage", "Scanned "
+                                        + path + ":");
+                                Log.i("ExternalStorage", "-> uri="
+                                        + uri);
+                            }
+                        });
     }
 
 

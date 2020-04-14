@@ -2,6 +2,7 @@ package com.uqac.stegano;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.util.Util;
+
+import java.io.File;
 
 
 public class DisplayActivity extends Activity {
@@ -59,6 +62,7 @@ public class DisplayActivity extends Activity {
                     String savePath = Utilities.saveToPictures(bmpOut);
                     // Possibly restart this activity with the new image
                     Toast.makeText(getApplicationContext(), "Saved in " + savePath, Toast.LENGTH_SHORT).show();
+                    Utilities.refreshGallery(getApplicationContext(), savePath);
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "No message to encrypt", Toast.LENGTH_SHORT).show();
@@ -79,6 +83,7 @@ public class DisplayActivity extends Activity {
                     String savePath = Utilities.overwriteImage(bmpOut, photo_path);
                     // Possibly restart this activity with the new image
                     Toast.makeText(getApplicationContext(), "Saved in " + savePath, Toast.LENGTH_SHORT).show();
+                    Utilities.refreshGallery(getApplicationContext(), savePath);
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "No message to encrypt", Toast.LENGTH_SHORT).show();
