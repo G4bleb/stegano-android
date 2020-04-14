@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Stegano</string>
     <string name="image_text">No hidden message</string>
-    <string name="save_button">Save</string>
+    <string name="save_button">Save as new</string>
     <string name="editMessage">New message...</string>
+    <string name="overwrite_button">Overwrite</string>
 </resources>

@@ -8,6 +8,8 @@ import android.util.Log;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Utilities {
     /**
@@ -31,7 +33,7 @@ public class Utilities {
      * @param filename
      * @return the path to the image
      */
-    public static String saveToInternalStorage(Bitmap bitmapImage, String filename){
+    public static String saveToPictures(Bitmap bitmapImage, String filename){
         File directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
 
         directory = new File(directory, "Stegano");
@@ -58,7 +60,38 @@ public class Utilities {
         return mypath.getAbsolutePath();
     }
 
+    /**
+     * Saves a Bitmap as a PNG to pictures folder, generating the file name
+     * @param bitmapImage
+     * @return the path to the image
+     */
+    public static String saveToPictures(Bitmap bitmapImage) {
+        return saveToPictures(bitmapImage, new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss'.png'").format(new Date()));
+    }
 
+    public static String overwriteImage(Bitmap bitmapImage, String path) {
+        new File(path).delete();
+
+        String newpath=path.substring(0, path.lastIndexOf("."))+".png";
+        File mypath = new File(newpath);
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return mypath.getAbsolutePath();
+    }
 
 
     /**
