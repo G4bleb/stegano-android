@@ -62,6 +62,7 @@ public class DisplayActivity extends Activity {
                     String savePath = Utilities.saveToPictures(bmpOut);
                     // Possibly restart this activity with the new image
                     Toast.makeText(getApplicationContext(), "Saved in " + savePath, Toast.LENGTH_SHORT).show();
+                    Utilities.refreshGallery(getApplicationContext(), photo_path);
                     Utilities.refreshGallery(getApplicationContext(), savePath);
                 }
                 else {
@@ -83,6 +84,7 @@ public class DisplayActivity extends Activity {
                     String savePath = Utilities.overwriteImage(bmpOut, photo_path);
                     // Possibly restart this activity with the new image
                     Toast.makeText(getApplicationContext(), "Saved in " + savePath, Toast.LENGTH_SHORT).show();
+                    Utilities.refreshGallery(getApplicationContext(), photo_path);
                     Utilities.refreshGallery(getApplicationContext(), savePath);
                 }
                 else {

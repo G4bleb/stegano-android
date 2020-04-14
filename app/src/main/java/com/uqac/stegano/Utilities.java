@@ -75,6 +75,7 @@ public class Utilities {
     public static String overwriteImage(Bitmap bitmapImage, String path) {
         new File(path).delete();
 
+
         String newpath=path.substring(0, path.lastIndexOf("."))+".png";
         File mypath = new File(newpath);
 
