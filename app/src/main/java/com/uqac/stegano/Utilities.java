@@ -96,6 +96,11 @@ public class Utilities {
         return mypath.getAbsolutePath();
     }
 
+    /**
+     * Refreshes the media scanner on given path
+     * @param context the application context
+     * @param path the path where the change has been made
+     */
     public static void refreshGallery(Context context, String path){
         MediaScannerConnection
                 .scanFile(
@@ -112,7 +117,6 @@ public class Utilities {
                             }
                         });
     }
-
 
     /**
      * This method converts the byte array to an integer array.
