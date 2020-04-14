@@ -181,9 +181,8 @@ class EncodeDecode {
 
                 if (message.endsWith(END_MESSAGE_CONSTANT)) {
 
-                    Log.i("TEST", "Decoding ended");
+                    Log.i("DECODE", "Decoding ended");
 
-                    //fixing ISO-8859-1 decoding
                     byte[] temp = new byte[byte_encrypted_message.size()];
 
                     for (int index = 0; index < temp.length; index++)
@@ -194,8 +193,6 @@ class EncodeDecode {
 
 
                     message = stra.substring(0, stra.length() - 1);
-                    //end fixing
-                    //TODO ENDED
 
                     break;
                 } else {
@@ -207,12 +204,9 @@ class EncodeDecode {
                             && !START_MESSAGE_CONSTANT.equals(message) ){
 
                         message = "";
-                        //TODO ENDED
-
                         break;
                     }
                 }
-
                 tmp = 0x00;
             }
 
@@ -220,7 +214,6 @@ class EncodeDecode {
 
         if (!Utilities.isStringEmpty(message))
             //removing start and end constants form message
-
             try {
                 message = message.substring(START_MESSAGE_CONSTANT.length(), message.length() - END_MESSAGE_CONSTANT.length());
             } catch (Exception e) {

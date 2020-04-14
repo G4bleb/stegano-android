@@ -49,13 +49,13 @@ public class DisplayActivity extends Activity {
         textView.setText(decodeText);
 
         // Create the event for the button
-        Button button = findViewById(R.id.saveButton);
-        button.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.saveButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EditText editText = findViewById(R.id.userText);
                 String msg = editText.getText().toString();
                 if (!msg.equals("")) {
+                    // Encode the text in the image
                     Toast.makeText(getApplicationContext(), "Encryption started", Toast.LENGTH_SHORT).show();
                     Bitmap bmpIn = Utilities.loadImage(photo_path);
                     Bitmap bmpOut = EncodeDecode.encodeMessage(bmpIn, msg);
@@ -78,6 +78,7 @@ public class DisplayActivity extends Activity {
                 EditText editText = findViewById(R.id.userText);
                 String msg = editText.getText().toString();
                 if (!msg.equals("")) {
+                    // Encode the text in the image
                     Toast.makeText(getApplicationContext(), "Encryption started", Toast.LENGTH_SHORT).show();
                     Bitmap bmpIn = Utilities.loadImage(photo_path);
                     Bitmap bmpOut = EncodeDecode.encodeMessage(bmpIn, msg);
@@ -90,7 +91,6 @@ public class DisplayActivity extends Activity {
                 else {
                     Toast.makeText(getApplicationContext(), "No message to encrypt", Toast.LENGTH_SHORT).show();
                 }
-                // Encode the text in image
             }
         });
     }
