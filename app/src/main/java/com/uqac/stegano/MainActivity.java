@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
         galleryAdapter.setData(filesList);
         gridView.setAdapter(galleryAdapter);
+        galleryAdapter.notifyDataSetChanged();
 
         // Make grid clickable
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
